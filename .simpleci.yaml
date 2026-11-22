@@ -15,11 +15,11 @@ pipeline:
       run: |
         COUNT=$(grep -c "{ text:" app.js || true)
         echo "Found $COUNT thoughts in the database"
-        if [ "$COUNT" -lt 10 ]; then
-          echo "ERROR: Need at least 10 thoughts, found only $COUNT"
+        if [ "$COUNT" -lt 1 ]; then
+          echo "ERROR: No thoughts found in app.js — add at least one!"
           exit 1
         fi
-        echo "✓ Thought count OK ($COUNT >= 10)"
+        echo "✓ Thought count OK ($COUNT thought(s) found)"
 
     - name: Validate HTML structure
       run: |

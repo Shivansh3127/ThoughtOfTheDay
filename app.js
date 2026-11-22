@@ -48,18 +48,16 @@ function buildStars() {
   container.appendChild(fragment);
 }
 
-// ─── Pick a thought (seed by date so reload = same day, button = new one) ──
-function getIndexForToday() {
-  const d = new Date();
-  const seed = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
-  return seed % thoughts.length;
+// ─── Pick a random thought (different every reload) ─────────────────────────
+function randomIndex() {
+  return Math.floor(Math.random() * thoughts.length);
 }
 
 function displayThought(index, animate = false) {
-  const card     = document.getElementById('card');
+  const card = document.getElementById('card');
   const thoughtEl = document.getElementById('thought');
-  const authorEl  = document.getElementById('author');
-  const numEl     = document.getElementById('num');
+  const authorEl = document.getElementById('author');
+  const numEl = document.getElementById('num');
 
   const { text, author } = thoughts[index];
 
@@ -67,14 +65,14 @@ function displayThought(index, animate = false) {
     card.classList.add('fading');
     setTimeout(() => {
       thoughtEl.textContent = text;
-      authorEl.textContent  = author;
-      numEl.textContent     = index + 1;
+      authorEl.textContent = author;
+      numEl.textContent = index + 1;
       card.classList.remove('fading');
     }, 420);
   } else {
     thoughtEl.textContent = text;
-    authorEl.textContent  = author;
-    numEl.textContent     = index + 1;
+    authorEl.textContent = author;
+    numEl.textContent = index + 1;
   }
 }
 
@@ -99,10 +97,10 @@ function copyThought() {
     const ta = document.createElement('textarea');
     ta.value = content;
     ta.style.position = 'fixed';
-    ta.style.opacity  = '0';
+    ta.style.opacity = '0';
     document.body.appendChild(ta);
     ta.focus(); ta.select();
-    try { document.execCommand('copy'); showToast(); } catch (_) {}
+    try { document.execCommand('copy'); showToast(); } catch (_) { }
     document.body.removeChild(ta);
   }
 }
@@ -124,7 +122,7 @@ document.addEventListener('keydown', e => {
 function init() {
   document.getElementById('total').textContent = thoughts.length;
   buildStars();
-  currentIndex = getIndexForToday();
+  currentIndex = randomIndex();   // pure random on every page load / reload
   displayThought(currentIndex, false);
 }
 
