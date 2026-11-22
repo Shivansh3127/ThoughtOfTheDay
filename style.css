@@ -16,7 +16,7 @@
 html, body {
   height: 100%;
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-  background: yellow;
+  background: black;
   color: var(--text);
   overflow-x: hidden;
 }
