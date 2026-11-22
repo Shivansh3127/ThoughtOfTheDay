@@ -2,6 +2,9 @@ pipeline:
   name: Thought of the Day — CI/CD Pipeline
   image: node:20-alpine
 
+  branches:
+    - main      # Only run CI on main branch — never on gh-pages deploy branch
+
   deploy:
     provider: github-pages
     directory: .
