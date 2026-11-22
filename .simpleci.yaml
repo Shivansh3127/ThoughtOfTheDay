@@ -1,0 +1,67 @@
+name: Thought of the Day — CI Pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  lint-and-validate:
+    name: Validate Website Files
+    image: node:20-alpine
+
+    steps:
+      - name: Check required files exist
+        run: |
+          echo "Checking project structure..."
+          test -f index.html  && echo "  index.html" || (echo "MISSING: index.html" && exit 1)
+          test -f style.css   && echo "  style.css"  || (echo "MISSING: style.css"  && exit 1)
+          test -f app.js      && echo "  app.js"     || (echo "MISSING: app.js"     && exit 1)
+          echo "All required files present!"
+
+      - name: Count thoughts in app.js
+        run: |
+          COUNT=$(grep -c "{ text:" app.js || true)
+          echo "Found $COUNT thoughts in the database"
+          if [ "$COUNT" -lt 10 ]; then
+            echo "ERROR: Need at least 10 thoughts, found only $COUNT"
+            exit 1
+          fi
+          echo "Thought count OK ($COUNT >= 10)"
+
+      - name: Check HTML structure
+        run: |
+          echo "Validating HTML structure..."
+          grep -q "<!DOCTYPE html>"  index.html && echo "  DOCTYPE found"     || (echo "MISSING DOCTYPE" && exit 1)
+          grep -q "<title>"          index.html && echo "  Title tag found"   || (echo "MISSING title"   && exit 1)
+          grep -q "app.js"           index.html && echo "  app.js linked"     || (echo "app.js not linked" && exit 1)
+          grep -q "style.css"        index.html && echo "  style.css linked"  || (echo "style.css not linked" && exit 1)
+          echo "HTML structure OK"
+
+      - name: Check CSS is non-empty
+        run: |
+          LINES=$(wc -l < style.css)
+          echo "style.css has $LINES lines"
+          if [ "$LINES" -lt 20 ]; then
+            echo "ERROR: CSS file looks too small ($LINES lines)"
+            exit 1
+          fi
+          echo "CSS size OK"
+
+      - name: Check JavaScript syntax (node --check)
+        run: |
+          echo "Running Node.js syntax check on app.js..."
+          node --check app.js && echo "app.js syntax is valid!"
+
+      - name: Print project summary
+        run: |
+          echo ""
+          echo "=============================="
+          echo "  Thought of the Day - CI OK"
+          echo "=============================="
+          echo "  HTML   : $(wc -l < index.html) lines"
+          echo "  CSS    : $(wc -l < style.css) lines"
+          echo "  JS     : $(wc -l < app.js) lines"
+          echo "  Thoughts: $(grep -c '{ text:' app.js)"
+          echo "=============================="
+          echo "  Pipeline: SUCCESS"
+          echo "=============================="
