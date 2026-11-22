@@ -1,6 +1,11 @@
 pipeline:
-  name: Thought of the Day — CI Pipeline
+  name: Thought of the Day — CI/CD Pipeline
   image: node:20-alpine
+
+  deploy:
+    provider: github-pages
+    directory: .
+    branch: gh-pages
 
   steps:
     - name: Check required files exist
