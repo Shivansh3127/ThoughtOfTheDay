@@ -4,21 +4,7 @@
 const thoughts = [
   { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
   { text: "Honesty is the best policy", author: "God" },
-  { text: "Honesty is the best policy", author: "God" },
-  { text: "Honesty is the best policy", author: "God" },
-  { text: "Honesty is the best policy", author: "God" },
-  { text: "Honesty is the best policy", author: "God" },
-  { text: "Honesty is the best policy", author: "God" },
-  { text: "Honesty is the best policy", author: "God" },
-  { text: "Honesty is the best policy", author: "God" },
-  { text: "Honesty is the best policy", author: "God" },
-  { text: "Honesty is the best policy", author: "God" },
-  { text: "Honesty is the best policy", author: "God" },
-  { text: "Honesty is the best policy", author: "God" },
-  { text: "Honesty is the best policy", author: "God" },
-  { text: "Honesty is the best policy", author: "God" },
-  { text: "Honesty is the best policy", author: "God" },
-  { text: "Honesty is the best policy", author: "God" },
+ 
 ];
 
 // ─── State ──────────────────────────────────────────────────────────────────
