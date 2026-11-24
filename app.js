@@ -6,6 +6,7 @@ const thoughts = [
   { text: "Honesty is the best policy", author: "God" },
   { text: "God is Great ", author: "Shivansh" },
   { text: "Always brings Peace ", author: "Shivansh" },
+  { text: "Precaution is better than Cure ", author: "Arjun" },
 ];
 
 // ─── State ──────────────────────────────────────────────────────────────────
