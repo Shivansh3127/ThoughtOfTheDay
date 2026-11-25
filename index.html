@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thought of the Day</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <!-- Dynamic cache-buster: JS writes the link tag with current timestamp -->
+  <script>
+    (function() {
+      var v = Date.now();
+      document.write('<link rel="stylesheet" href="style.css?v=' + v + '" />');
+    })();
+  </script>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+
+  <div class="container">
+    <div class="badge">✨ Thoughts for Wednesday</div>
+
+    <div class="card" id="card">
+      <div class="quote-icon">"</div>
+      <p class="thought" id="thought"></p>
+      <div class="author" id="author"></div>
+    </div>
+
+    <div class="actions">
+      <button class="btn" id="newBtn" onclick="newThought()">
+        <span class="btn-icon">🔀</span> New Thought
+      </button>
+      <button class="btn btn-copy" id="copyBtn" onclick="copyThought()">
+        <span class="btn-icon">📋</span> Copy
+      </button>
+    </div>
+
+    <div class="counter">
+      Thought <span id="num">1</span> of <span id="total"></span>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Copied to clipboard! 📋</div>
+
+  <script>
+    // Load app.js with cache-buster too
+    (function() {
+      var s = document.createElement('script');
+      s.src = 'app.js?v=' + Date.now();
+      document.body.appendChild(s);
+    })();
+  </script>
+</body>
+</html>
