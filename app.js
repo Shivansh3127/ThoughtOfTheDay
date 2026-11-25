@@ -2,6 +2,7 @@
 
 // ─── Thought Database ───────────────────────────────────────────────────────
 const thoughts = [
+  { text: "peace ", author: "Steve Jobs" },
   { text: "The only way to do great work is to love what you do.", author: "Steve Jobs" },
   { text: "Honesty is the best policy", author: "God" },
   { text: "God is Great ", author: "Shivansh" },
